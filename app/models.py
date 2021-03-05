@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     zipcode = db.Column(db.String(150), nullable=False, unique=False)
     Admin = db.Column(db.Boolean, default=False, nullable=False)
 
-    def __init__(self,username, email, password, phone, address,city,zipcode,Admin=False):
+    def __init__(self,username, email, password, phone, address, city, zipcode, Admin=False):
         self.username = username
         self.email = email
         self.password = generate_password_hash(password)
