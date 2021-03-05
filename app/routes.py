@@ -12,6 +12,7 @@ def index():
 
     return render_template('index.html', title=title)
 
+# @app.route('/')
 
 # @app.route('/shoppingCart', methods=["GET", "POST"])
 # @login_required
