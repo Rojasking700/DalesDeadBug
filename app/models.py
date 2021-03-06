@@ -37,14 +37,16 @@ class Plans(db.Model):
     description = db.Column(db.String(256), nullable=False, unique=False)
     url = db.Column(db.String(150), nullable=False, unique=False)
     sale = db.Column(db.Boolean)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    def __init__(self,username, email, password, address, phone):
+    def __init__(self,username, email, password, address, phone, user_id):
         self.service_name = service_name
         self.service_date = service_date
         self.price = price
         self.description = description
         self.url = url
         self.sale = sale
+        self.user_id = user_id
 
 
 #This may or may not work????

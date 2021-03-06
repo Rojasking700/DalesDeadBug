@@ -76,9 +76,21 @@ def login():
 
     return render_template('login.html',title=title, form=form)
 
+@app.route('/myinfo')
+@login_required
+def myinfo():
+    title = ddb + 'My Info'
+    return render_template('myinfo.html', title = title)
 
-# @app.route('/shoppingCart', methods=["GET", "POST"])
+# @app.route('/myplans')
 # @login_required
-# def shoppingCart():
-    
-#     return render_template('shoppingCart.html')
+# def myplans():
+#     title = ddb + 'My Plans'
+#     plans = current_user.Plans
+#     return render_template('myplans', title=title, plans=plans)
+
+@app.route('/shoppingCart', methods=["GET", "POST"])
+@login_required
+def shoppingCart():
+    title = ddb + 'My Cart'
+    return render_template('shoppingCart.html',title=title)
