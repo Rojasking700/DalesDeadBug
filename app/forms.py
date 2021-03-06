@@ -6,10 +6,12 @@ from wtforms.validators import DataRequired, EqualTo, Email
 class UserInfoForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    address = StringField('Address', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_pass = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    phone = StringField('Phone', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    zipcode = StringField('ZipCode', validators=[DataRequired()])
     submit = SubmitField()
 
 

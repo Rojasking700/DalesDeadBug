@@ -1,4 +1,4 @@
-from app import app, db
+from app import app, db, Mail, Message
 from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm
 from app.models import User, Plans
@@ -25,11 +25,11 @@ def register():
         address = form.address.data
         city = form.city.data
         zipcode = form.zipcode.data
-        admin = form.admin.data
+        # admin = form.admin.data
         # print(username, email, password)
 
         # create new instance of User
-        new_user = User(username, email, password, phone, address, city, zipcode, admin)
+        new_user = User(username, email, password, phone, address, city, zipcode)
         # add new instance to our database
         db.session.add(new_user)
         # commit database
@@ -40,10 +40,10 @@ def register():
         msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
         msg.html = "<p>Thanks you so much for signing up for the Dale's Dead Bugs service. Where we do buggin right! We may, or may not, be in Liberia!</p>"
 
-        mail.send(msg)
+        Mail.send(msg)
 
         flash("It may be a crack in your internet, or the Chinese are making their move!", "success")
-        return redirect(url_for('hello_world'))
+        return redirect(url_for('index'))
     return render_template('register.html', title=title, form=form)
 
 
