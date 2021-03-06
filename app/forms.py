@@ -14,4 +14,9 @@ class UserInfoForm(FlaskForm):
     zipcode = StringField('ZipCode', validators=[DataRequired()])
     submit = SubmitField()
 
+class LoginForm(FlaskForm):
+    username = StringField('username',validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField()
 
