@@ -39,13 +39,15 @@ class Plans(db.Model):
     sale = db.Column(db.Boolean)
     cartitems = db.relationship('Cart', backref='Plans')
 
-    def __init__(self,username, email, password, address, phone):
+
+    def __init__(self,username, email, password, address, phone, user_id):
         self.service_name = service_name
         self.service_date = service_date
         self.price = price
         self.description = description
         self.url = url
         self.sale = sale
+        self.user_id = user_id
 
 
 class Cart(db.Model):
