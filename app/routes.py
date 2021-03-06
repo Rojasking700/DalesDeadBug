@@ -1,7 +1,7 @@
 from app import app, db, Mail, Message
 from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm
-from app.models import User, Plans
+from app.models import User, Plans, Cart
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
 
