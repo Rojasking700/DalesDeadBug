@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(150), nullable=False, unique=False)
     city = db.Column(db.String(150), nullable=False, unique=False)
     zipcode = db.Column(db.String(150), nullable=False, unique=False)
-    Admin = db.Column(db.Boolean, default=False, nullable=False)
+    Admin = db.Column(db.Boolean, default=False, nullable=False) #Ignore this during user registration
 
     def __init__(self,username, email, password, phone, address, city, zipcode, Admin=False):
         self.username = username
