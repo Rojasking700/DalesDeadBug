@@ -14,6 +14,7 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
+
           {% if current_user.is_authenticated %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,6 +37,7 @@
           </li>
           {% endif %}
         </ul>
+
       </div>
     </div>
   </nav>
