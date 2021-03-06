@@ -86,6 +86,41 @@ def myinfo():
     title = ddb + 'My Info'
     return render_template('myinfo.html', title = title)
 
+@app.route('/myinfo/update/<int:user_id>',methods=['GET','POST'])
+@login_required
+def myInfoUpdate(user_id):
+    title = ddb + "Update My Info"
+    myinfo = User.query.get_or_404(user_id)
+    update_info = UserInfoForm()
+    
+    if myinfo.id != current_user.id:
+        flash("You cannot update another users info")
+        return redirect(url_for('myinfo'))
+
+    if request.method == 'POST' and update_form.validate():
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data 
+        phone = form.phone.data
+        address = form.address.data
+        city = form.city.data
+        zipcode = form.zipcode.data
+
+        myinfo.username = username
+        myinfo.email = email
+        myinfo.password = password 
+        myinfo.phone = phone
+        myinfo.address = address
+        myinfo.city = city
+        myinfo.zipcode = zipcode
+        
+        db.session.commit()
+
+        flash("You have successfully updated your info")
+        return redirect(url_for('myinfo', user_id=user.id))
+    return render_template('myInfoUpdate.html', title=title, form=update_info)
+
+
 
 @app.route('/shoppingCart', methods=["GET", "POST"])
 @login_required

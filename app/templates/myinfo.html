@@ -15,7 +15,7 @@
       <li class="list-group-item"><strong>Zipcode: </strong>{{ current_user.zipcode }}</li>
     </ul>
     <div class="card-body">
-        <a href="#" class="btn btn-primary">Edit Info</a>
+        <a href="{{ url_for('myInfoUpdate', user_id=current_user.id) }}" class="btn btn-primary">Edit Info</a>
       </div>
 </div>
 
