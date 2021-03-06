@@ -16,5 +16,12 @@ def index():
 # @app.route('/shoppingCart', methods=["GET", "POST"])
 # @login_required
 # def shoppingCart():
-    
-#     return render_template('shoppingCart.html')
+#     ### Pull information about what has been added to the cart
+
+
+#     ### Confirm shopping cart purchase of plan
+
+
+#     ### Create a modello for paying for the plan.  This is a sham popup.
+#         return
+#     return render_template('shoppingCart.html', title="DDB | Cart")
