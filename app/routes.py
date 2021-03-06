@@ -75,15 +75,12 @@ def logout():
     flash("You have succesfully logged out", 'primary')
     return redirect(url_for('index'))
 
-# @app.route('/shoppingCart', methods=["GET", "POST"])
-# @login_required
-# def shoppingCart():
-#     ### Pull information about what has been added to the cart
+@app.route('/mycart')
+def mycart():
+    return render_template('shoppingcart.html', title="DDB | My Cart")
 
-
-#     ### Confirm shopping cart purchase of plan
-
-
-#     ### Create a modello for paying for the plan.  This is a sham popup.
-#         return
-#     return render_template('shoppingCart.html', title="DDB | Cart")
+# @app.route('/addplan')
+# def addplan():
+#     if request.method = 'POST':
+#         #add items to cart
+#         return redirect(url_for('shoppingcart'))
