@@ -1,7 +1,7 @@
 from app import app, db, Mail, Message
 from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm, LoginForm
-from app.models import User, Plans
+from app.models import User, Plans, Cart
 from flask_login import login_user, logout_user, login_required,current_user
 from werkzeug.security import check_password_hash
 
@@ -75,29 +75,6 @@ def login():
 
     return render_template('login.html',title=title, form=form)
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     title = "Kekambas Blog | LOGIN"
-#     form = LoginForm()
-#     if request.method == 'POST' and form.validate():
-#         username = form.username.data
-#         password = form.password.data
-
-#         user = User.query.filter_by(username=username).first()
-
-#         if user is None or not check_password_hash(user.password, password):
-#             flash("Incorrect Email/Password. Please try again", 'danger')
-#             return redirect(url_for('login'))
-        
-#         login_user(user, remember=form.remember_me.data)
-#         flash("You have successfully logged in!", 'success')
-#         next_page = request.args.get('next')
-#         if next_page:
-#             return redirect(url_for(next_page.lstrip('/')))
-#         return redirect(url_for('index'))
-
-#     return render_template('login.html', title=title, form=form)
-
 @app.route('/logout')
 def logout():
     logout_user()
@@ -112,7 +89,28 @@ def myinfo():
 
 @app.route('/mycart')
 def mycart():
-    return render_template('shoppingcart.html', title="DDB | My Cart")
+    context = {
+        'title' : "DDB | My Cart",
+        'total_price' : 0,
+        'cart' : Cart.query.all()
+    }
+    
+    print('BREAK!!!!')
+    print(current_user.id)
+    print('BREAK!!!!')
+    # print(cart)
+    print('break!!!!')
+    for objects in context['cart']:
+        
+        print(objects.service_id)
+        print(objects.user_id)
+        
+        if current_user.id == objects.user_id:
+            print(objects.id)
+            print(objects.plan.price)
+            context['total_price'] += objects.plan.price
+            print(context['total_price'])
+    return render_template('shoppingcart.html', **context)
 
 # @app.route('/addplan')
 # def addplan():
