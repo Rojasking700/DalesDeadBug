@@ -2,13 +2,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h4>Plans you are registering for!</h4>
+    <h4>Hello, {{ current_user.username }}, here is your pending plans.</h4>
+    
+    {% for objects in cart %}
+        <h1>BREAK!!!!!</h1>
+        {% if current_user.id == objects.user_id %}
+            <h1>TEST!!!!!!!</h1>
+        {% endif %}
+    {% endfor %}
 
-{% for object in list %}
-
-{% endfor %}
-
-
-
+    <h2>Total Price: ${{ total_price }}</h2>
 
 {% endblock %}

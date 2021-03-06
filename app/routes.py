@@ -1,7 +1,7 @@
 from app import app, db, Mail, Message
 from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm, LoginForm
-from app.models import User, Plans
+from app.models import User, Plans, Cart
 from flask_login import login_user, logout_user, login_required,current_user
 from werkzeug.security import check_password_hash
 
@@ -53,6 +53,7 @@ def logout():
     flash("You have succesfully logged out", 'primary')
     return redirect(url_for('index'))
 
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     title = ddb + 'login'
@@ -80,12 +81,50 @@ def login():
 
     return render_template('login.html',title=title, form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash("You have succesfully logged out", 'primary')
+    return redirect(url_for('index'))
+
 @app.route('/myinfo')
 @login_required
 def myinfo():
     title = ddb + 'My Info'
     return render_template('myinfo.html', title = title)
 
+
+@app.route('/mycart')
+def mycart():
+    context = {
+        'title' : "DDB | My Cart",
+        'total_price' : 0,
+        'cart' : Cart.query.all()
+    }
+    
+    print('BREAK!!!!')
+    print(current_user.id)
+    print('BREAK!!!!')
+    # print(cart)
+    print('break!!!!')
+    for objects in context['cart']:
+        
+        print(objects.service_id)
+        print(objects.user_id)
+        
+        if current_user.id == objects.user_id:
+            print(objects.id)
+            print(objects.plan.price)
+            context['total_price'] += objects.plan.price
+            print(context['total_price'])
+    return render_template('shoppingcart.html', **context)
+
+# @app.route('/addplan')
+# def addplan():
+#     if request.method = 'POST':
+#         #add items to cart
+#         return redirect(url_for('shoppingcart'))
+=======
 @app.route('/myinfo/update/<int:user_id>',methods=['GET','POST'])
 @login_required
 def myInfoUpdate(user_id):
@@ -122,9 +161,10 @@ def myInfoUpdate(user_id):
 
 
 
-@app.route('/shoppingCart', methods=["GET", "POST"])
-@login_required
-def shoppingCart():
-    title = ddb + 'My Cart'
-    return render_template('shoppingCart.html',title=title)
+# @app.route('/shoppingCart', methods=["GET", "POST"])
+# @login_required
+# def shoppingCart():
+#     title = ddb + 'My Cart'
+#     return render_template('shoppingCart.html',title=title)
+
 
