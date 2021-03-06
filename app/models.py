@@ -39,7 +39,7 @@ class Plans(db.Model):
     sale = db.Column(db.Boolean)
     cartitems = db.relationship('Cart', backref='Plans')
 
-    def __init__(self,username, email, password, address, phone):
+    def __init__(self,service_name, service_date, price, description, url, sale=False):
         self.service_name = service_name
         self.service_date = service_date
         self.price = price
@@ -53,9 +53,8 @@ class Cart(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey('plans.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    def __init__(self, service_id, price, user_id):
+    def __init__(self, service_id, user_id):
         self.service_id = self.service_id
-        self.price = price
         self.user_id = user_id
 
 
