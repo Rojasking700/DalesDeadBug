@@ -37,10 +37,10 @@ def register():
 
         # send email to new user
         msg = Message(f"Welcome, {username}", [email])
-        msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
+        # msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
         msg.html = "<p>Thanks you so much for signing up for the Dale's Dead Bugs service. Where we do buggin right! We may, or may not, be in Liberia!</p>"
 
-        Mail.send(msg)
+        # Mail.send(msg)  error occurs saying that send needs a postional argument dont know why
 
         flash("It may be a crack in your internet, or the Chinese are making their move!", "success")
         return redirect(url_for('index'))
