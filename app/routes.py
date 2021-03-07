@@ -190,7 +190,7 @@ def myInfoUpdate(user_id):
         flash("You cannot update another users info")
         return redirect(url_for('myinfo'))
 
-    if request.method == 'POST' and update_form.validate():
+    if request.method == 'POST' and update_info.validate():
         username = form.username.data
         email = form.email.data
         password = form.password.data
