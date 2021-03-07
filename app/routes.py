@@ -7,9 +7,9 @@ from werkzeug.security import check_password_hash
 
 @app.route('/')
 @app.route('/index')
-def index():
-    title = "Dales Dead Bug "
-
+def ddb_Home():
+        title = "Dale's Dead Bug",
+        
     return render_template('index.html', title=title)
 
 # @app.route('/')
