@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<h3>Hello, new user. Please register here!</h3>
+<h3 class="regwelcome">Hello, new user.</h3>
+<h3 class="regwelcome">Please register here!</h3>
 
-<form action="" method='POST'>
+<form class="cstform" action="" method='POST'>
     {{ form.hidden_tag() }}
     <fieldset>
         {{ form.username.label }}
@@ -38,7 +39,7 @@
         {{ form.zipcode.label  }}
         {{ form.zipcode(class="form-control", placeholder="zipcode") }}
     </fieldset>
-    {{ form.submit(class="btn btn-success")}}
+    {{ form.submit(class="btn regbtn")}}
 </form>
 
 {% endblock content %}

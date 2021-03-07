@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h4>Login</h4>
+<h4 class="regwelcome">Login</h4>
 <!--Login Form goes Here-->
-<form action="" method="POST">
+<form class="" action="" method="POST">
     {{ form.hidden_tag()}}
-    <div class="form-group">
+    <div class="form-group cstform">
         <fieldset>
             {{ form.username.label }}
             {{ form.username(class='form-control', placeholder='Username') }}
@@ -18,7 +18,7 @@
             {{ form.remember_me(class='form-check-input') }}
             {{ form.remember_me.label(class='form-check-label') }}
         </fieldset>
-        {{ form.submit(class='btn btn-success') }}
+        {{ form.submit(class='btn regbtn') }}
     </div>
 </form>
 {% endblock %}
