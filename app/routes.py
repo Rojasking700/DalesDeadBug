@@ -5,13 +5,14 @@ from app.models import User, Plans, Cart
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
-ddb = """Dale's Dead Bug | """
+
+ddb = """Dale's Dead Bugs | """
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    title = ddb + 'HOME'
+    title = ddb + """HOME"""
     return render_template('index.html', title=title)
 
 # @app.route('/')
@@ -122,6 +123,7 @@ def availableplans():
 
 
 @app.route('/mycart')
+@login_required
 def mycart():
     context = {
         'title': "DDB | My Cart",
@@ -139,12 +141,30 @@ def mycart():
         print(objects.service_id)
         print(objects.user_id)
 
+# =======
+#     for objects in context['cart']:
+# >>>>>>> master
         if current_user.id == objects.user_id:
-            print(objects.id)
-            print(objects.plan.price)
             context['total_price'] += objects.plan.price
-            print(context['total_price'])
     return render_template('shoppingcart.html', **context)
+
+@app.route('/removecartplan/delete/<int:cart_id>', methods=["POST"])
+@login_required
+def removecartplan(cart_id):
+    cart = Cart.query.get_or_404(cart_id)
+    db.session.delete(cart)
+    db.session.commit()
+    return redirect(url_for('mycart'))
+
+@app.route('/addcartplan/add/<int:plan_id>', methods=["POST"])
+@login_required
+def addcartplan(plan_id):
+    # plan = Plans.query.get_or_404(plan_id)
+    item = Cart(plan_id, current_user.id)
+    db.session.add(item)
+    db.session.commit()
+    return redirect(url_for('mycart'))
+
 
 # @app.route('/addplan')
 # def addplan():
@@ -152,8 +172,9 @@ def mycart():
 #         #add items to cart
 #         return redirect(url_for('shoppingcart'))
 
-
 @app.route('/myinfo/update/<int:user_id>', methods=['GET', 'POST'])
+
+
 @login_required
 def myInfoUpdate(user_id):
     title = ddb + "Update My Info"
