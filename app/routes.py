@@ -11,6 +11,11 @@ ddb = """Dale's Dead Bugs | """
 
 @app.route('/')
 @app.route('/index')
+# <<<<<<< master
+# def ddb_Home():
+#         title = "Dale's Dead Bug",
+        
+# =======
 def index():
     title = ddb + """HOME"""
     return render_template('index.html', title=title)
