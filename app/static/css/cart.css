@@ -1,0 +1,5 @@
+.cart-item{
+    display: flex;
+    background-color: aqua;
+    margin: 15px;
+}
