@@ -5,12 +5,12 @@ from app.models import User, Plans, Cart
 from flask_login import login_user, logout_user, login_required,current_user
 from werkzeug.security import check_password_hash
 
-ddb = "Dale's Dead Bugs | "
+ddb = """Dale's Dead Bugs | """
 
 @app.route('/')
 @app.route('/index')
 def index():
-    title = ddb + 'HOME'
+    title = ddb + """HOME"""
     return render_template('index.html', title=title)
 
 # @app.route('/')
@@ -81,11 +81,7 @@ def login():
 
     return render_template('login.html',title=title, form=form)
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    flash("You have succesfully logged out", 'primary')
-    return redirect(url_for('index'))
+
 
 @app.route('/myinfo')
 @login_required
@@ -130,7 +126,6 @@ def addcartplan(plan_id):
 #     if request.method = 'POST':
 #         #add items to cart
 #         return redirect(url_for('shoppingcart'))
-=======
 @app.route('/myinfo/update/<int:user_id>',methods=['GET','POST'])
 @login_required
 def myInfoUpdate(user_id):
