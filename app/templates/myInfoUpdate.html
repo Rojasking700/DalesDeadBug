@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h3>Your Info:</h3>
+
+<form action="" method="POST">
+    {{ form.hidden_tag()}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          <h3><strong>Username: </strong><fieldset>{{ form.username(class="form-control", placeholder=current_user.username) }}</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Email: </strong><fieldset>{{ form.email(class="form-control", placeholder=current_user.email) }}</fieldset></li>
+          <li class="list-group-item"><strong>Phone Number: </strong><fieldset>{{ form.phone(class="form-control", placeholder=current_user.phone) }}</fieldset></li>
+          <li class="list-group-item"><strong>Adress: </strong><fieldset>{{ form.address(class="form-control", placeholder=current_user.address) }}</fieldset></li>
+          <li class="list-group-item"><strong>City: </strong><fieldset>{{ form.city(class="form-control", placeholder=current_user.city) }}</fieldset></li>
+          <li class="list-group-item"><strong>Zipcode: </strong><fieldset>{{ form.zipcode(class="form-control", placeholder=current_user.zipcode) }}</fieldset></li>
+        </ul>
+        <div class="card-body">
+            {{ form.submit(class="btn btn-success")}}
+          </div>
+    </div>    
+</form>
+{% endblock content %}
