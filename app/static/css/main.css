@@ -1,3 +1,4 @@
+
 .cstnav{
     background-color: rgb(255, 155, 172);
 }
@@ -80,4 +81,20 @@
 .socialmedia{
     margin: 5px;
     width: 35px;
+
+.banner{
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, rgba(30,115,172,0.7), rgba(142,57,153,0.6)), url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Zk4CYick3bfGTg6bayUV9gHaE8%26pid%3DApi&f=1);
+    background-size: cover;
+
+}
+
+.header_text{
+    display: flex;
+    justify-content: center;
+    padding-top: 20%;
+    left: 20rem;
+    right: 10%;
+    color: white;
+
 }
