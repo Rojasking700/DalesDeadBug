@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Your Info:</h3>
+<h3 class="regwelcome">Your Info:</h3>
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 60%;">
     <div class="card-header">
-      <h3>{{ current_user.username }}</h3>
+      <h3 class="userName">{{ current_user.username }}</h3>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><strong>Email: </strong>{{ current_user.email }}</li>
-      <li class="list-group-item"><strong>Phone Number: </strong>{{ current_user.phone }}</li>
-      <li class="list-group-item"><strong>Adress: </strong>{{ current_user.address }}</li>
-      <li class="list-group-item"><strong>City: </strong>{{ current_user.city }}</li>
-      <li class="list-group-item"><strong>Zipcode: </strong>{{ current_user.zipcode }}</li>
+      <li class="list-group-item userInfo"><strong>Email: </strong>{{ current_user.email }}</li>
+      <li class="list-group-item userInfo"><strong>Phone Number: </strong>{{ current_user.phone }}</li>
+      <li class="list-group-item userInfo"><strong>Adress: </strong>{{ current_user.address }}</li>
+      <li class="list-group-item userInfo"><strong>City: </strong>{{ current_user.city }}</li>
+      <li class="list-group-item userInfo"><strong>Zipcode: </strong>{{ current_user.zipcode }}</li>
     </ul>
-    <div class="card-body">
-        <a href="{{ url_for('myInfoUpdate', user_id=current_user.id) }}" class="btn btn-primary">Edit Info</a>
-      </div>
+    <div class="card-body btnalign">
+        <a href="{{ url_for('myInfoUpdate', user_id=current_user.id) }}" class="btn regbtn">Edit Info</a>
+    </div>
 </div>
 
 {% endblock content %}

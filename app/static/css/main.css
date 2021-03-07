@@ -1,3 +1,87 @@
+
+.cstnav{
+    background-color: rgb(255, 155, 172);
+}
+
+.nav-link, .navbar-brand{
+    color: rgb(194, 24, 52) !important;
+    font-weight: 600;
+}
+
+.dropdown-menu{
+    background-color: rgb(255, 155, 172);
+    font-weight: 600;
+}
+
+.dropdown-item{
+    color: rgb(194, 24, 52) !important;
+}
+
+.main-body{
+    background-color: rgb(197, 197, 197);
+}
+
+.regwelcome{
+    color: rgb(194, 24, 52) !important;
+    font-weight: 900;
+    font-size: 35px;
+}
+
+.cstform{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.cstform fieldset{
+    font-size: 20px;
+    margin: 5px;
+    color: rgb(194, 24, 52) !important;
+    width: 80%;
+}
+
+.regbtn{
+    background-color: rgb(255, 155, 172);
+    color: rgb(194, 24, 52) !important;
+    font-size: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.regbtn:hover{
+    background-color: rgb(207, 123, 137);
+    color: rgb(167, 24, 48) !important;
+}
+
+.userName{
+    font-size: 30px;
+    margin: 5px;
+    color: rgb(194, 24, 52) !important;
+    width: 80%;
+}
+
+.userInfo{
+    font-size: 20px;
+    margin: 5px;
+    color: rgb(194, 24, 52) !important;
+    width: 80%;
+}
+
+.btnalign{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.cstfooter{
+    margin-top: 10%;
+    background-color: teal;
+}
+
+.socialmedia{
+    margin: 5px;
+    width: 35px;
+
 .banner{
     height: 95vh;
     background-image: linear-gradient(to right bottom, rgba(30,115,172,0.7), rgba(142,57,153,0.6)), url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Zk4CYick3bfGTg6bayUV9gHaE8%26pid%3DApi&f=1);
@@ -12,4 +96,5 @@
     left: 20rem;
     right: 10%;
     color: white;
+
 }
