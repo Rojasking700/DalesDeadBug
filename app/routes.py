@@ -68,7 +68,7 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if user is None or not check_password_hash(user.password, password):
-            flask("Incorrect Username or Password. Please try again")
+            flash("Incorrect Username or Password. Please try again")
             return redirect(url_for('index'))
 
         login_user(user,remember=form.remember_me.data)
@@ -81,11 +81,6 @@ def login():
 
     return render_template('login.html',title=title, form=form)
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    flash("You have succesfully logged out", 'primary')
-    return redirect(url_for('index'))
 
 @app.route('/myinfo')
 @login_required
@@ -124,7 +119,7 @@ def mycart():
 #     if request.method = 'POST':
 #         #add items to cart
 #         return redirect(url_for('shoppingcart'))
-=======
+
 @app.route('/myinfo/update/<int:user_id>',methods=['GET','POST'])
 @login_required
 def myInfoUpdate(user_id):
