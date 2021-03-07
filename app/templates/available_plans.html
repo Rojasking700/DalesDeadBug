@@ -4,10 +4,91 @@
 
 {% extends 'base.html' %}
 
+
 {% block content %}
 
-<div class="plans">
-    <h1>Service Plans</h1>
+<div class="container">
+    <div class="createaplan">
+        <h1>Submit a New Plan</h1>
+
+        <!-- form for admin to submit new sales -->
+        <form action="" method='POST'>
+            {{ form.hidden_tag() }}
+            <fieldset>
+                {{ form.service_name.label }}
+                {{ form.service_name(class="form-control", placeholder="Service") }}
+            </fieldset>
+            <fieldset>
+                {{ form.price.label }}
+                {{ form.price(class="form-control", placeholder="Price") }}
+            </fieldset>
+            <fieldset>
+                {{ form.description.label }}
+                {{ form.description(class="form-control", placeholder="Description") }}
+            </fieldset>
+            <fieldset>
+                {{ form.url.label }}
+                {{ form.url(class="form-control", placeholder="URL") }}
+            </fieldset>
+            <fieldset>
+                {{ form.sale(class='form-check-input') }}
+                {{ form.sale.label(class='form-check-label') }}
+            </fieldset>
+            {{ form.submit(class="btn btn-success")}}
+        </form>
+
+    </div>
+
+    <!-- description for admin -->
+    <div class="dale">
+
+        <h1>hi {{ user.username }}</h1><br><br>
+        <p>
+            Add a new service by filling out the form!
+        </p>
+
+    </div>
 </div>
+
+<!-- create new row for flexbox -->
+<div class="break"></div>
+
+<!-- description for services -->
+<div class="container">
+
+    <!-- service card -->
+    <div class="plans">
+
+        <p>
+            HAVING AN ISSUE WITH UNWANTED CRITTERS? WE HAVE SOMETHING FOR EVERYONE! IF YOU DON'T SEE THE UNWANTED FRIEND
+            GO AHEAD AND SHOOT US AN EMAIL AND I WILL PERSONALLY REMOVE THAT ENTITY WITH MY BARE HANDS!
+        </p>
+
+        <!-- break between description and service -->
+        <div class="break"></div>
+
+
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-auto">
+                    <img src='{{ user.url }}' class="img-fluid" alt="">
+                </div>
+                <div class="col">
+                    <div class="card-block px-2">
+                        <h4 class="card-title">{{ user.service_name }}</h4>
+                        <p class="card-text">{{ user.description }}</p>
+                        <a href="#" class="btn btn-primary">ADD TO CART</a> <a href="#" class="btn btn-danger">EDIT</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer w-100 text-muted">
+                {{ user.price }}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
 
 {% endblock content %}
