@@ -1,12 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-<!-- <<<<<<< master
-            <a class="nav-link active" aria-current="page" href="{{ url_for('ddb_Home') }}">Home</a>
-======= -->
-
-
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Dale's Dead Bug</a>
+    <a class="navbar-brand" href="{{ url_for('index') }}">Dale's Dead Bug</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -17,7 +11,7 @@
           <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Service Plans</a>
+          <a class="nav-link" href="{{ url_for('availableplans') }}">Service Plans</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">

@@ -3,7 +3,7 @@
 
 {% block content %}
     <h4>Hello, {{ current_user.username }}, here is your pending plans.</h4>
-    <form action="{{ url_for("addcartplan", plan_id=1) }}" method="post">
+    <form action="{{ url_for('addcartplan', plan_id=1) }}" method="post">
         <input type="submit" value="Add something" class="btn btn-success">
     </form>
 
@@ -14,7 +14,7 @@
             <h1>{{ objects.service_name }}</h1>
             <p>{{ objects.description }}</p>
             objects
-            <form action="{{ url_for("removecartplan", cart_id=objects.id) }}" method="post">
+            <form action="{{ url_for('removecartplan', cart_id=objects.id) }}" method="post">
                 <input type="submit" value="Delete" class="btn btn-danger">
             </form>
 
