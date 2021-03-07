@@ -71,3 +71,13 @@
     flex-flow: row;
     justify-content: center;
 }
+
+.cstfooter{
+    margin-top: 10%;
+    background-color: teal;
+}
+
+.socialmedia{
+    margin: 5px;
+    width: 35px;
+}
