@@ -88,29 +88,35 @@ def myinfo():
     return render_template('myinfo.html', title = title)
 
 @app.route('/mycart')
+@login_required
 def mycart():
     context = {
         'title' : "DDB | My Cart",
         'total_price' : 0,
         'cart' : Cart.query.all()
     }
-    
-    print('BREAK!!!!')
-    print(current_user.id)
-    print('BREAK!!!!')
-    # print(cart)
-    print('break!!!!')
     for objects in context['cart']:
-        
-        print(objects.service_id)
-        print(objects.user_id)
-        
         if current_user.id == objects.user_id:
-            print(objects.id)
-            print(objects.plan.price)
             context['total_price'] += objects.plan.price
-            print(context['total_price'])
     return render_template('shoppingcart.html', **context)
+
+@app.route('/removecartplan/delete/<int:cart_id>', methods=["POST"])
+@login_required
+def removecartplan(cart_id):
+    cart = Cart.query.get_or_404(cart_id)
+    db.session.delete(cart)
+    db.session.commit()
+    return redirect(url_for('mycart'))
+
+@app.route('/addcartplan/add/<int:plan_id>', methods=["POST"])
+@login_required
+def addcartplan(plan_id):
+    # plan = Plans.query.get_or_404(plan_id)
+    item = Cart(plan_id, current_user.id)
+    db.session.add(item)
+    db.session.commit()
+    return redirect(url_for('mycart'))
+
 
 # @app.route('/addplan')
 # def addplan():
