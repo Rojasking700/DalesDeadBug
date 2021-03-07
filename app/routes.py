@@ -95,29 +95,30 @@ def myinfo():
 
 
 @app.route('/availableplans', methods=["GET", "POST"])
-@login_required
+# @login_required
 def availableplans():
     
     title = ddb + 'Services'
-
+    user = current_user
     form = CreateAPlan()
+
     if request.method == 'POST' and form.validate():
-    
+
         service_name = form.service_name.data
         service_date = form.service_date.data
         price = form.price.data
         description = form.description.data
         url = form.url.data
         sale = form.sale.data
-        
-        new_plan = Plans(service_name, service_date, price, description, url, sale=False)
-        
+            
+        new_plan = Plans(service_name, service_date, price, description, url, sale)
+            
         db.session.add(new_plan)
         db.session.commit()
         flash ("Great Job! You Added a NEW Service :)")
         return redirect(url_for('availableplans'))
 
-    return render_template('available_plans.html', title=title)
+    return render_template('available_plans.html', form=form, title=title, user=user)
 
 
 @app.route('/mycart')
