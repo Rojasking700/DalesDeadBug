@@ -79,8 +79,7 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if user is None or not check_password_hash(user.password, password):
-            print()
-            print()
+
             flash("Incorrect Username or Password. Please try again", 'danger')
             return redirect(url_for('login'))
 
