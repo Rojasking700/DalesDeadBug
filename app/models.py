@@ -60,5 +60,8 @@ class Cart(db.Model):
         self.service_id = service_id
         self.user_id = user_id
 
+    def __repr__(self):
+        return f'<Cart: {self.id}>'
+
 
 

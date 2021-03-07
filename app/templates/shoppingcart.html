@@ -3,11 +3,21 @@
 
 {% block content %}
     <h4>Hello, {{ current_user.username }}, here is your pending plans.</h4>
-    
+    <form action="{{ url_for("addcartplan", plan_id=1) }}" method="post">
+        <input type="submit" value="Add something" class="btn btn-success">
+    </form>
+
+
     {% for objects in cart %}
         <h1>BREAK!!!!!</h1>
         {% if current_user.id == objects.user_id %}
-            <h1>TEST!!!!!!!</h1>
+            <h1>{{ objects.service_name }}</h1>
+            <p>{{ objects.description }}</p>
+            objects
+            <form action="{{ url_for("removecartplan", cart_id=objects.id) }}" method="post">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+
         {% endif %}
     {% endfor %}
 
