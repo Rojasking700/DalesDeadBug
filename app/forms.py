@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, BooleanField, DateTimeField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, BooleanField, DateField
 from wtforms.validators import DataRequired, EqualTo, Email
 from datetime import date
 
@@ -25,12 +25,17 @@ class LoginForm(FlaskForm):
 
 class CreateAPlan(FlaskForm):
         service_name = StringField('Service Name', validators=[DataRequired()])
-        service_date = DateTimeField('Date', validators=[DataRequired()])
+        service_date = DateField('Date', validators=[DataRequired()])
         price = StringField('Price', validators=[DataRequired()])
         description = TextAreaField('Description', validators=[DataRequired()])
         url = StringField('Img URL', validators=[DataRequired()])
+<<<<<<< HEAD
+        sale = BooleanField('Leave empty if service is not on sale')
+        submit = SubmitField()
+=======
         sale = BooleanField('Sale?')
 
 # class RemoveCartPlan(FlaskForm):
 #     submit = SubmitField
 
+>>>>>>> b892cebda2205fc2bcface8c3d73ac70e7974c25

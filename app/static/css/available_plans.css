@@ -1,3 +1,22 @@
 h1 {
-    background-color: black;
+    background-color:white;
 }
+
+.createaplan {
+    width: 50%;
+}
+
+.plans {
+    width: 80%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+  }
