@@ -22,6 +22,7 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField()
 
+
 class CreateAPlan(FlaskForm):
         service_name = StringField('Service Name', validators=[DataRequired()])
         service_date = DateTimeField('Date', validators=[DataRequired()])
@@ -29,3 +30,7 @@ class CreateAPlan(FlaskForm):
         description = TextAreaField('Description', validators=[DataRequired()])
         url = StringField('Img URL', validators=[DataRequired()])
         sale = BooleanField('Sale?')
+
+# class RemoveCartPlan(FlaskForm):
+#     submit = SubmitField
+
