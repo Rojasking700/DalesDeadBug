@@ -1,4 +1,4 @@
-from app import app, db, Mail, Message
+from app import app, db, mail, Message
 from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm, LoginForm, CreateAPlan
 from app.models import User, Plans, Cart
@@ -48,10 +48,10 @@ def register():
 
         # send email to new user
         msg = Message(f"Welcome, {username}", [email])
-        # msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
+        msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
         msg.html = "<p>Thanks you so much for signing up for the Dale's Dead Bugs service. Where we do buggin right! We may, or may not, be in Liberia!</p>"
 
-        # Mail.send(msg)  error occurs saying that send needs a postional argument dont know why
+        mail.send(msg) 
 
         flash("It may be a crack in your internet, or the Chinese are making their move!", "success")
         return redirect(url_for('index'))
@@ -136,20 +136,7 @@ def mycart():
         'total_price': 0,
         'cart': Cart.query.all()
     }
-
-    print('BREAK!!!!')
-    print(current_user.id)
-    print('BREAK!!!!')
-    # print(cart)
-    print('break!!!!')
     for objects in context['cart']:
-
-        print(objects.service_id)
-        print(objects.user_id)
-
-# =======
-#     for objects in context['cart']:
-# >>>>>>> master
         if current_user.id == objects.user_id:
             context['total_price'] += objects.plan.price
     return render_template('shoppingcart.html', **context)
@@ -214,9 +201,3 @@ def myInfoUpdate(user_id):
         return redirect(url_for('myinfo', user_id=current_user.id))
     return render_template('myInfoUpdate.html', title=title, form=update_info)
 
-
-# @app.route('/shoppingCart', methods=["GET", "POST"])
-# @login_required
-# def shoppingCart():
-#     title = ddb + 'My Cart'
-#     return render_template('shoppingCart.html',title=title)
