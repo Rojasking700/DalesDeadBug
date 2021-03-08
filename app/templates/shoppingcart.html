@@ -4,16 +4,12 @@
 {% block content %}
     <h4 class="regwelcome">Hello, {{ current_user.username }}</h4>
     <h4 class="regwelcome">Here is your pending plan(s).</h4>
-    <form action="{{ url_for('addcartplan', plan_id=1) }}" method="post">
-        <input type="submit" value="Add something" class="btn btn-success">
-    </form>
-
 
     {% for objects in cart %}
         {% if current_user.id == objects.user_id %}
         <div class="cart-item">
             <div>
-                <img src="https://via.placeholder.com/150" alt="">
+                <img src="{{ objects.plan.url }}" alt="" style="width: 200px !important;">
             </div>
             <div class="cart-item2">
                 <div>
