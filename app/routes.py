@@ -6,7 +6,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
 
-ddb = """Dale's Dead Bugs | """
+ddb = """Dale's Dead Bug | """
 
 
 @app.route('/')
@@ -101,32 +101,46 @@ def myinfo():
     return render_template('myinfo.html', title=title)
 
 
-@app.route('/availableplans', methods=["GET", "POST"])
-# @login_required
-def availableplans():
+@app.route('/createplan', methods=["GET", "POST"])
+@login_required
+def createplan():
     
-    title = ddb + 'Services'
-    user = current_user
+
+    context = {
+    'title' : ddb + "Create a Plan",
+    'user' : User.query.filter_by(username='DaleG')
+    }
+
     form = CreateAPlan()
 
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST':
+        if current_user.Admin == True:
 
-        service_name = form.service_name.data
-        service_date = form.service_date.data
-        price = form.price.data
-        description = form.description.data
-        url = form.url.data
-        sale = form.sale.data
-            
-        new_plan = Plans(service_name, service_date, price, description, url, sale)
-            
-        db.session.add(new_plan)
-        db.session.commit()
-        flash ("Great Job! You Added a NEW Service :)")
-        return redirect(url_for('availableplans'))
+            service_name = form.service_name.data
+            service_date = '10/10/1992'
+            price = form.price.data
+            description = form.description.data
+            url = form.url.data
+            sale = form.sale.data
+                
+            new_plan = Plans(service_name, service_date, price, description, url, sale) 
+            db.session.add(new_plan)
+            db.session.commit()
+            flash ("Great Job! You Added a NEW Service :)")
+            return redirect(url_for('createplan'))  
+        else:
+            flash ("go home bobby..")     
+            return redirect(url_for('index'))
+    return render_template('create_a_plan.html', form=form, **context)
 
-    return render_template('available_plans.html', form=form, title=title, user=user)
 
+@app.route('/availableplans')
+def availableplans():
+    context = {
+        'title' : ddb + "Services",
+        'plan' : Plans.query.all()
+    }
+    return render_template('available_plans.html', **context)
 
 @app.route('/mycart')
 @login_required
@@ -136,6 +150,7 @@ def mycart():
         'total_price': 0,
         'cart': Cart.query.all()
     }
+
     for objects in context['cart']:
         if current_user.id == objects.user_id:
             context['total_price'] += objects.plan.price
