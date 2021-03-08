@@ -192,13 +192,13 @@ def myInfoUpdate(user_id):
         return redirect(url_for('myinfo'))
 
     if request.method == 'POST' and update_info.validate():
-        username = form.username.data
-        email = form.email.data
-        password = form.password.data
-        phone = form.phone.data
-        address = form.address.data
-        city = form.city.data
-        zipcode = form.zipcode.data
+        username = update_info.username.data
+        email = update_info.email.data
+        password = update_info.password.data
+        phone = update_info.phone.data
+        address = update_info.address.data
+        city = update_info.city.data
+        zipcode = update_info.zipcode.data
 
         myinfo.username = username
         myinfo.email = email
@@ -211,7 +211,7 @@ def myInfoUpdate(user_id):
         db.session.commit()
 
         flash("You have successfully updated your info")
-        return redirect(url_for('myinfo', user_id=user.id))
+        return redirect(url_for('myinfo', user_id=current_user.id))
     return render_template('myInfoUpdate.html', title=title, form=update_info)
 
 

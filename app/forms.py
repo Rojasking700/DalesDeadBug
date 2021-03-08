@@ -7,8 +7,7 @@ class UserInfoForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    confirm_pass = PasswordField('Confirm Password', validators=[
-                                 DataRequired(), EqualTo('password')])
+    confirm_pass = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     phone = StringField('Phone', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])
@@ -29,13 +28,5 @@ class CreateAPlan(FlaskForm):
         price = StringField('Price', validators=[DataRequired()])
         description = TextAreaField('Description', validators=[DataRequired()])
         url = StringField('Img URL', validators=[DataRequired()])
-<<<<<<< HEAD
         sale = BooleanField('Leave empty if service is not on sale')
         submit = SubmitField()
-=======
-        sale = BooleanField('Sale?')
-
-# class RemoveCartPlan(FlaskForm):
-#     submit = SubmitField
-
->>>>>>> b892cebda2205fc2bcface8c3d73ac70e7974c25
