@@ -17,6 +17,8 @@
           <li class="list-group-item"><strong>Adress: </strong><fieldset>{{ form.address(class="form-control", placeholder=current_user.address) }}</fieldset></li>
           <li class="list-group-item"><strong>City: </strong><fieldset>{{ form.city(class="form-control", placeholder=current_user.city) }}</fieldset></li>
           <li class="list-group-item"><strong>Zipcode: </strong><fieldset>{{ form.zipcode(class="form-control", placeholder=current_user.zipcode) }}</fieldset></li>
+          <li class="list-group-item"><strong>Password: </strong><fieldset>{{ form.password(class="form-control", placeholder="New password") }}</fieldset></li>
+          <li class="list-group-item"><strong>Confirm Password: </strong><fieldset>{{ form.confirm_pass(class="form-control", placeholder="Confirm new password") }}</fieldset></li>
         </ul>
         <div class="card-body">
             {{ form.submit(class="btn btn-success")}}

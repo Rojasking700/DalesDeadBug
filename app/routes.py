@@ -1,4 +1,4 @@
-from app import app, db, Mail, Message
+from app import app, db, mail, Message
 from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm, LoginForm, CreateAPlan
 from app.models import User, Plans, Cart
@@ -48,10 +48,10 @@ def register():
 
         # send email to new user
         msg = Message(f"Welcome, {username}", [email])
-        # msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
+        msg.body = 'Thank you for signing up for the most glorious death of your bugs. I hope you enjoy your new carnage!'
         msg.html = "<p>Thanks you so much for signing up for the Dale's Dead Bugs service. Where we do buggin right! We may, or may not, be in Liberia!</p>"
 
-        # Mail.send(msg)  error occurs saying that send needs a postional argument dont know why
+        mail.send(msg) 
 
         flash("It may be a crack in your internet, or the Chinese are making their move!", "success")
         return redirect(url_for('index'))
@@ -193,14 +193,14 @@ def myInfoUpdate(user_id):
         flash("You cannot update another users info")
         return redirect(url_for('myinfo'))
 
-    if request.method == 'POST' and update_form.validate():
-        username = form.username.data
-        email = form.email.data
-        password = form.password.data
-        phone = form.phone.data
-        address = form.address.data
-        city = form.city.data
-        zipcode = form.zipcode.data
+    if request.method == 'POST' and update_info.validate():
+        username = update_info.username.data
+        email = update_info.email.data
+        password = update_info.password.data
+        phone = update_info.phone.data
+        address = update_info.address.data
+        city = update_info.city.data
+        zipcode = update_info.zipcode.data
 
         myinfo.username = username
         myinfo.email = email
@@ -213,12 +213,6 @@ def myInfoUpdate(user_id):
         db.session.commit()
 
         flash("You have successfully updated your info")
-        return redirect(url_for('myinfo', user_id=user.id))
+        return redirect(url_for('myinfo', user_id=current_user.id))
     return render_template('myInfoUpdate.html', title=title, form=update_info)
 
-
-# @app.route('/shoppingCart', methods=["GET", "POST"])
-# @login_required
-# def shoppingCart():
-#     title = ddb + 'My Cart'
-#     return render_template('shoppingCart.html',title=title)
