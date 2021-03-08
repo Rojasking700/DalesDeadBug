@@ -9,8 +9,6 @@
 
 {% for objects in plan %}
 
-{{ objects.service_name }}
-
 
 <div class="container">
 
@@ -29,15 +27,15 @@
                 <div class="col">
                     <div class="card-block px-2">
                         <h4 class="card-title">{{ objects.service_name }}</h4>
-                        <p class="card-text">{{ objects.description }}</p>
+                        <p class="card-text description">{{ objects.description }}</p>
                         <form action="{{ url_for('addcartplan', plan_id=objects.id) }}" method="post">
-                            <input type="submit" value="Add something" class="btn btn-success">
+                            <input type="submit" value="Add To Cart" class="btn btn-warning">
                         </form>
                     </div>
                 </div>
             </div>
             <div class="card-footer w-100 text-muted">
-                {{ objects.price }}
+                $ {{ objects.price }}
             </div>
         </div>
 
