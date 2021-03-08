@@ -105,6 +105,7 @@ def myinfo():
 @login_required
 def createplan():
     
+
     context = {
     'title' : ddb + "Create a Plan",
     'user' : User.query.filter_by(username='DaleG')
@@ -112,22 +113,24 @@ def createplan():
 
     form = CreateAPlan()
 
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST':
+        if current_user.Admin == True:
 
-        service_name = 'form.service_name.data'
-        service_date = 'hello it is me'
-        price = 123
-        description = 'form.description.data'
-        url = 'form.url.data'
-        sale = False
-            
-        new_plan = Plans(service_name, service_date, price, description, url, sale)
-        print('1BREAK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')    
-        db.session.add(new_plan)
-        db.session.commit()
-        flash ("Great Job! You Added a NEW Service :)")
-        return redirect(url_for('createplan'))
-    print('BREAK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')            
+            service_name = form.service_name.data
+            service_date = '10/10/1992'
+            price = form.price.data
+            description = form.description.data
+            url = form.url.data
+            sale = form.sale.data
+                
+            new_plan = Plans(service_name, service_date, price, description, url, sale) 
+            db.session.add(new_plan)
+            db.session.commit()
+            flash ("Great Job! You Added a NEW Service :)")
+            return redirect(url_for('createplan'))  
+        else:
+            flash ("go home bobby..")     
+            return redirect(url_for('index'))
     return render_template('create_a_plan.html', form=form, **context)
 
 

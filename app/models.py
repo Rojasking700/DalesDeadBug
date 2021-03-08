@@ -37,8 +37,8 @@ class User(db.Model, UserMixin):
 
 class Plans(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    service_name = db.Column(db.String(150), nullable=False, unique=True)
-    service_date = db.Column(db.String(150), nullable=False, unique=True)
+    service_name = db.Column(db.String(150), nullable=False, unique=False)
+    service_date = db.Column(db.String(150), nullable=False, unique=False)
     price = db.Column(db.Integer)
     description = db.Column(db.String(256), nullable=False, unique=False)
     url = db.Column(db.String(150), nullable=False, unique=False)

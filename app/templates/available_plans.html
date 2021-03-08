@@ -30,7 +30,9 @@
                     <div class="card-block px-2">
                         <h4 class="card-title">{{ objects.service_name }}</h4>
                         <p class="card-text">{{ objects.description }}</p>
-                        <a href="#" class="btn btn-primary">ADD TO CART</a>
+                        <form action="{{ url_for('addcartplan', plan_id=objects.id) }}" method="post">
+                            <input type="submit" value="Add something" class="btn btn-success">
+                        </form>
                     </div>
                 </div>
             </div>
