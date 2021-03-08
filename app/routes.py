@@ -3,7 +3,7 @@ from flask import render_template, request, flash, redirect, url_for
 from app.forms import UserInfoForm, LoginForm, CreateAPlan
 from app.models import User, Plans, Cart
 from flask_login import login_user, logout_user, login_required, current_user
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 ddb = """Dale's Dead Bug | """
@@ -39,8 +39,7 @@ def register():
         # print(username, email, password)
 
         # create new instance of User
-        new_user = User(username, email, password,
-                        phone, address, city, zipcode)
+        new_user = User(username, email, password,phone, address, city, zipcode)
         # add new instance to our database
         db.session.add(new_user)
         # commit database
@@ -204,7 +203,7 @@ def myInfoUpdate(user_id):
 
         myinfo.username = username
         myinfo.email = email
-        myinfo.password = password
+        myinfo.password = generate_password_hash(password)
         myinfo.phone = phone
         myinfo.address = address
         myinfo.city = city
