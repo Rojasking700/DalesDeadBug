@@ -1,6 +1,3 @@
-h1 {
-    background-color:white;
-}
 
 .createaplan {
     width: 50%;
@@ -11,10 +8,30 @@ h1 {
     padding: 10px;
 }
 
+.card-title {
+    padding: 10px;
+    letter-spacing: 0.5px;
+}
+
+.card-text {
+    padding: 10px;
+    letter-spacing: 0.5px;
+}
+
+img {
+    width: 200px;
+    justify-content: space-around;
+}
+
 .container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+.dale {
+    border-radius: 100px;
+    justify-content: center;
 }
 
 .break {
