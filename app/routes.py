@@ -39,8 +39,7 @@ def register():
         # print(username, email, password)
 
         # create new instance of User
-        new_user = User(username, email, password,
-                        phone, address, city, zipcode)
+        new_user = User(username, email, password,phone, address, city, zipcode)
         # add new instance to our database
         db.session.add(new_user)
         # commit database
