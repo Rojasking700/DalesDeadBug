@@ -6,7 +6,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
 
-ddb = """Dale's Dead Bugs | """
+ddb = """Dale's Dead Bug | """
 
 
 @app.route('/')
@@ -101,32 +101,43 @@ def myinfo():
     return render_template('myinfo.html', title=title)
 
 
-@app.route('/availableplans', methods=["GET", "POST"])
-# @login_required
-def availableplans():
+@app.route('/createplan', methods=["GET", "POST"])
+@login_required
+def createplan():
     
-    title = ddb + 'Services'
-    user = current_user
+    context = {
+    'title' : ddb + "Create a Plan",
+    'user' : User.query.filter_by(username='DaleG')
+    }
+
     form = CreateAPlan()
 
     if request.method == 'POST' and form.validate():
 
-        service_name = form.service_name.data
-        service_date = form.service_date.data
-        price = form.price.data
-        description = form.description.data
-        url = form.url.data
-        sale = form.sale.data
+        service_name = 'form.service_name.data'
+        service_date = 'hello it is me'
+        price = 123
+        description = 'form.description.data'
+        url = 'form.url.data'
+        sale = False
             
         new_plan = Plans(service_name, service_date, price, description, url, sale)
-            
+        print('1BREAK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')    
         db.session.add(new_plan)
         db.session.commit()
         flash ("Great Job! You Added a NEW Service :)")
-        return redirect(url_for('availableplans'))
+        return redirect(url_for('createplan'))
+    print('BREAK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')            
+    return render_template('create_a_plan.html', form=form, **context)
 
-    return render_template('available_plans.html', form=form, title=title, user=user)
 
+@app.route('/availableplans')
+def availableplans():
+    context = {
+        'title' : ddb + "Services",
+        'plan' : Plans.query.all()
+    }
+    return render_template('available_plans.html', **context)
 
 @app.route('/mycart')
 @login_required
@@ -137,19 +148,7 @@ def mycart():
         'cart': Cart.query.all()
     }
 
-    print('BREAK!!!!')
-    print(current_user.id)
-    print('BREAK!!!!')
-    # print(cart)
-    print('break!!!!')
     for objects in context['cart']:
-
-        print(objects.service_id)
-        print(objects.user_id)
-
-# =======
-#     for objects in context['cart']:
-# >>>>>>> master
         if current_user.id == objects.user_id:
             context['total_price'] += objects.plan.price
     return render_template('shoppingcart.html', **context)

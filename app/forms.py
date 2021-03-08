@@ -29,13 +29,5 @@ class CreateAPlan(FlaskForm):
         price = StringField('Price', validators=[DataRequired()])
         description = TextAreaField('Description', validators=[DataRequired()])
         url = StringField('Img URL', validators=[DataRequired()])
-<<<<<<< HEAD
         sale = BooleanField('Leave empty if service is not on sale')
         submit = SubmitField()
-=======
-        sale = BooleanField('Sale?')
-
-# class RemoveCartPlan(FlaskForm):
-#     submit = SubmitField
-
->>>>>>> b892cebda2205fc2bcface8c3d73ac70e7974c25
